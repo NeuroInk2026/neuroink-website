@@ -1,0 +1,21 @@
+{
+  "name": "NeuroInk - L'IA accessible à tous",
+  "short_name": "NeuroInk",
+  "description": "Maison d'édition spécialisée dans la démocratisation de l'intelligence artificielle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#6B3FA0",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
