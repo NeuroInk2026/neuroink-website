@@ -1,21 +1,25 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import DecorativeIcon from './DecorativeIcon';
+// Import direct - pas de chemin relatif complexe
+import DecorativeIcon from '@/components/ui/DecorativeIcon';
 
 export default function MissionVision() {
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50 font-raleway">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* En-tête */}
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-[#00A3E0] to-[#40E0D0] text-white text-xs font-semibold rounded-full mb-4">
+            Notre identité
+          </span>
+          <h2 className="text-4xl font-bold text-gray-900">
+            À propos de <span className="bg-gradient-to-r from-[#6B3FA0] via-[#00A3E0] to-[#40E0D0] text-transparent bg-clip-text">NeuroInk</span>
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* NOTRE MISSION */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <div className="relative">
             {/* Card principale */}
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl relative overflow-hidden">
               {/* Badge */}
@@ -36,8 +40,8 @@ export default function MissionVision() {
                 des contenus clairs, progressifs et engageants.
               </p>
 
-              {/* Icône décorative - MOTIF AJOUTÉ */}
-              <div className="absolute -right-8 -top-8 w-40 h-40 opacity-20">
+              {/* Icône décorative INTERNE */}
+              <div className="absolute -right-8 -top-8 w-40 h-40 opacity-20 pointer-events-none">
                 <DecorativeIcon type="brain" className="w-full h-full" />
               </div>
 
@@ -45,20 +49,14 @@ export default function MissionVision() {
               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none" />
             </div>
 
-            {/* Icône décorative externe - MOTIF AJOUTÉ */}
-            <div className="hidden lg:block absolute -right-16 top-1/2 -translate-y-1/2 w-32 h-32 opacity-30">
+            {/* Icône décorative EXTERNE - Zone que vous aviez encerclée */}
+            <div className="hidden lg:block absolute -right-20 top-1/2 -translate-y-1/2 w-32 h-32 opacity-30 pointer-events-none">
               <DecorativeIcon type="brain" className="w-full h-full" />
             </div>
-          </motion.div>
+          </div>
 
           {/* NOTRE VISION */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <div className="relative">
             {/* Card principale */}
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl relative overflow-hidden">
               {/* Badge */}
@@ -79,8 +77,8 @@ export default function MissionVision() {
                 une barrière, mais un tremplin.
               </p>
 
-              {/* Icône décorative - MOTIF AJOUTÉ */}
-              <div className="absolute -right-8 -top-8 w-40 h-40 opacity-20">
+              {/* Icône décorative INTERNE */}
+              <div className="absolute -right-8 -top-8 w-40 h-40 opacity-20 pointer-events-none">
                 <DecorativeIcon type="network" className="w-full h-full" />
               </div>
 
@@ -88,22 +86,16 @@ export default function MissionVision() {
               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none" />
             </div>
 
-            {/* Icône décorative externe - MOTIF AJOUTÉ */}
-            <div className="hidden lg:block absolute -left-16 top-1/2 -translate-y-1/2 w-32 h-32 opacity-30">
+            {/* Icône décorative EXTERNE - Zone que vous aviez encerclée */}
+            <div className="hidden lg:block absolute -left-20 top-1/2 -translate-y-1/2 w-32 h-32 opacity-30 pointer-events-none">
               <DecorativeIcon type="network" className="w-full h-full" />
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Valeurs - Section bonus */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Nos valeurs</h3>
+        {/* Valeurs */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Nos valeurs fondamentales</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -122,12 +114,8 @@ export default function MissionVision() {
                 gradient: 'from-[#40E0D0] to-[#6B3FA0]',
               },
             ].map((value, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                viewport={{ once: true }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div
@@ -141,10 +129,10 @@ export default function MissionVision() {
                   {value.title}
                 </h4>
                 <p className="text-gray-600 text-sm">{value.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
