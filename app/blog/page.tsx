@@ -4,16 +4,16 @@ import { ArrowRight } from 'lucide-react';
 export default function BlogPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-raleway">
-      {/* Header avec GRADIENT NEUROINK CORRECT */}
-      <section className="bg-gradient-to-r from-[#6B3FA0] via-[#00A3E0] to-[#40E0D0] py-20">
+      {/* Header avec GRADIENT IDENTIQUE À LA PAGE LIVRES */}
+      <section className="bg-gradient-to-r from-gray-900 via-[#1a1a2e] to-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block px-4 py-1.5 bg-white/20 text-white text-xs font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 bg-[#40E0D0]/20 text-[#40E0D0] text-xs font-semibold rounded-full mb-4">
             📰 Actualités & Ressources
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Blog & Actualités
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Articles, tutoriels et réflexions sur l'intelligence artificielle
           </p>
         </div>
