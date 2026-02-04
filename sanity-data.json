@@ -1,0 +1,539 @@
+{
+  "formations": [
+    {
+      "_type": "formation",
+      "title": "Introduction à l'Intelligence Artificielle",
+      "slug": {
+        "_type": "slug",
+        "current": "intro-ia"
+      },
+      "description": "Découvrez les fondamentaux de l'IA de manière accessible et progressive. Ce parcours vous permettra de comprendre les concepts clés, les applications concrètes et les enjeux éthiques de l'intelligence artificielle. Parfait pour les débutants !",
+      "shortDescription": "Les bases de l'IA expliquées simplement, sans prérequis techniques",
+      "duration": "4 semaines",
+      "level": "debutant",
+      "price": "gratuit",
+      "status": "available",
+      "order": 1
+    },
+    {
+      "_type": "formation",
+      "title": "Machine Learning Pratique",
+      "slug": {
+        "_type": "slug",
+        "current": "machine-learning-pratique"
+      },
+      "description": "Plongez dans le Machine Learning avec des exemples concrets et des projets pratiques. Vous apprendrez à construire vos premiers modèles d'apprentissage automatique, comprendre les algorithmes principaux et les appliquer à des cas réels. Prérequis : connaissances de base en programmation Python.",
+      "shortDescription": "Construisez vos premiers modèles de Machine Learning",
+      "duration": "8 semaines",
+      "level": "intermediaire",
+      "price": 99,
+      "status": "coming_soon",
+      "order": 2
+    },
+    {
+      "_type": "formation",
+      "title": "Deep Learning et IA Générative",
+      "slug": {
+        "_type": "slug",
+        "current": "deep-learning-ia-generative"
+      },
+      "description": "Maîtrisez les réseaux de neurones profonds et l'IA générative (ChatGPT, DALL-E, etc.). Cette formation avancée vous permettra de comprendre l'architecture des transformers, de fine-tuner des modèles et de créer vos propres applications d'IA générative. Prérequis : solides bases en Machine Learning.",
+      "shortDescription": "Maîtrisez les réseaux de neurones et l'IA générative",
+      "duration": "12 semaines",
+      "level": "avance",
+      "price": 199,
+      "status": "coming_soon",
+      "order": 3
+    }
+  ],
+  "articles": [
+    {
+      "_type": "article",
+      "title": "ChatGPT et l'avenir du travail : opportunité ou menace ?",
+      "slug": {
+        "_type": "slug",
+        "current": "chatgpt-avenir-travail"
+      },
+      "excerpt": "L'arrivée de ChatGPT et des IA génératives bouleverse le monde professionnel. Entre automatisation et augmentation des capacités humaines, comment l'IA va-t-elle transformer nos métiers ?",
+      "category": "actualites",
+      "tags": ["ChatGPT", "Travail", "IA générative"],
+      "isPublished": true,
+      "publishedAt": "2026-02-04T10:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'intelligence artificielle générative, incarnée par ChatGPT et ses successeurs, provoque des débats passionnés sur l'avenir du travail. Certains y voient une menace pour l'emploi, d'autres une opportunité sans précédent."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Une révolution déjà en marche"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Depuis son lancement fin 2022, ChatGPT a franchi la barre des 100 millions d'utilisateurs en deux mois. Les entreprises du monde entier explorent ses applications : rédaction, service client, programmation, analyse de données..."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Les métiers impactés"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Contrairement aux révolutions industrielles précédentes, l'IA touche aujourd'hui les cols blancs : rédacteurs, développeurs, analystes, traducteurs. Ces professions nécessitent désormais une adaptation rapide."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "L'humain reste indispensable"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'IA ne remplace pas l'humain, elle l'augmente. Les compétences clés restent : la créativité, l'intelligence émotionnelle, le jugement critique, et la capacité d'apprentissage. Notre livre \"L'Odyssée de l'IA en 30 jours\" vous aide à comprendre ces enjeux et à vous préparer à l'ère de l'IA."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "Google lance Gemini Ultra : une nouvelle ère pour l'IA ?",
+      "slug": {
+        "_type": "slug",
+        "current": "google-gemini-ultra"
+      },
+      "excerpt": "Google dévoile Gemini Ultra, son modèle d'IA le plus avancé. Multimodal et ultra-performant, il promet de rivaliser avec GPT-4. Décryptage des nouveautés et implications pour l'écosystème IA.",
+      "category": "actualites",
+      "tags": ["Google", "Gemini", "Actualités"],
+      "isPublished": true,
+      "publishedAt": "2026-02-03T14:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Google a officiellement lancé Gemini Ultra, marquant une nouvelle étape dans la course à l'IA. Ce modèle multimodal promet des performances inédites sur le traitement du texte, des images, de l'audio et de la vidéo."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Les points forts de Gemini Ultra"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Gemini Ultra se distingue par sa capacité à traiter simultanément plusieurs types de données. Il peut analyser une image tout en générant du texte, ou comprendre une vidéo pour en extraire les informations clés. Les benchmarks montrent des performances supérieures à GPT-4 sur plusieurs tâches complexes."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Implications pour les développeurs"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Google Cloud propose déjà l'accès via API, permettant aux développeurs d'intégrer ces capacités dans leurs applications. Les tarifs restent compétitifs par rapport à OpenAI, avec des options de pricing adaptées aux startups."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "La bataille des géants tech continue"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Avec ce lancement, Google intensifie la compétition face à OpenAI, Microsoft et Meta. Cette rivalité bénéficie aux utilisateurs : les modèles deviennent plus performants, plus accessibles, et moins coûteux. Pour comprendre ces évolutions et leurs impacts sur votre quotidien, \"L'Odyssée de l'IA en 30 jours\" offre les clés de compréhension essentielles."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "L'Europe adopte l'AI Act : ce qui change pour vous",
+      "slug": {
+        "_type": "slug",
+        "current": "europe-ai-act"
+      },
+      "excerpt": "Le Parlement européen vient d'adopter l'AI Act, la première réglementation mondiale sur l'intelligence artificielle. Quelles sont les obligations pour les entreprises ? Et les garanties pour les citoyens ?",
+      "category": "actualites",
+      "tags": ["Réglementation", "Europe", "Éthique"],
+      "isPublished": true,
+      "publishedAt": "2026-02-01T09:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'Union européenne franchit une étape historique avec l'adoption de l'AI Act, le premier cadre réglementaire mondial dédié à l'intelligence artificielle. Cette loi vise à encadrer les usages de l'IA tout en favorant l'innovation."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Une approche par niveaux de risque"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'AI Act classe les systèmes d'IA en quatre catégories : risque inacceptable (interdit), risque élevé (réglementé strictement), risque limité (transparence requise), et risque minimal (aucune obligation). Les systèmes de reconnaissance faciale en temps réel dans l'espace public sont par exemple interdits, sauf exceptions pour la sécurité."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Obligations pour les entreprises"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Les entreprises développant des IA à risque élevé devront : réaliser des évaluations d'impact, assurer la traçabilité des données d'entraînement, permettre la supervision humaine, et documenter toute leur démarche. Les amendes peuvent atteindre 7% du chiffre d'affaires mondial pour les infractions graves."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Protections pour les citoyens"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Les citoyens européens bénéficient de nouveaux droits : être informés lorsqu'ils interagissent avec une IA, contester les décisions automatisées, et demander une explication sur les algorithmes utilisés. Ces garanties renforcent la confiance dans les technologies d'IA. Pour approfondir ces enjeux éthiques et réglementaires, \"L'Odyssée de l'IA en 30 jours\" consacre un chapitre entier aux questions juridiques et sociétales."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "Créer votre premier chatbot avec Python en 30 minutes",
+      "slug": {
+        "_type": "slug",
+        "current": "creer-chatbot-python"
+      },
+      "excerpt": "Tutoriel pas à pas pour construire un chatbot conversationnel simple avec Python et la bibliothèque ChatterBot. Idéal pour les débutants !",
+      "category": "tutoriels",
+      "tags": ["Python", "Chatbot", "Débutant"],
+      "isPublished": true,
+      "publishedAt": "2026-02-03T11:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Vous voulez créer votre premier chatbot ? Ce tutoriel vous guide étape par étape pour construire un assistant conversationnel avec Python. Aucune expérience avancée requise !"}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Prérequis"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Python 3.8+ installé sur votre machine. Connaissances de base en Python (variables, fonctions). Un éditeur de code (VS Code, PyCharm, ou autre)."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Installation des bibliothèques"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Ouvrez votre terminal et installez ChatterBot : pip install chatterbot chatterbot-corpus"}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Code de base"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Créez un fichier chatbot.py et ajoutez le code suivant pour initialiser le bot, l'entraîner avec des données en français, et créer une boucle de conversation. Le bot apprend progressivement de vos échanges et améliore ses réponses au fil du temps."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Lancer le chatbot"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Exécutez python chatbot.py dans votre terminal et commencez à discuter ! Le chatbot répondra à vos questions en s'appuyant sur ses données d'entraînement."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Pour aller plus loin"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Ce tutoriel vous a donné les bases pour créer un chatbot simple. Pour des projets plus avancés (intégration API, reconnaissance d'intention, génération de réponses contextuelles), consultez \"L'Odyssée de l'IA en 30 jours\" qui détaille les techniques modernes de NLP et de chatbots intelligents."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "Débuter avec l'IA en 5 étapes simples",
+      "slug": {
+        "_type": "slug",
+        "current": "debuter-ia-5-etapes"
+      },
+      "excerpt": "Vous voulez vous lancer dans l'apprentissage de l'intelligence artificielle mais ne savez pas par où commencer ? Suivez ce guide pratique en 5 étapes.",
+      "category": "tutoriels",
+      "tags": ["Débutant", "Guide", "Apprentissage"],
+      "isPublished": true,
+      "publishedAt": "2026-01-31T10:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Vous entendez parler d'intelligence artificielle partout, mais vous ne savez pas par où commencer ? Ce guide vous donne une feuille de route claire et progressive."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Étape 1 : Comprendre les concepts de base"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Avant de plonger dans la technique, familiarisez-vous avec le vocabulaire : IA, Machine Learning, Deep Learning, réseaux de neurones. Ressource recommandée : Chapitres 1-7 de \"L'Odyssée de l'IA en 30 jours\"."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Étape 2 : Découvrir les outils accessibles"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Testez ChatGPT, DALL-E, GitHub Copilot. Ces outils vous montrent l'IA en action sans écrire une ligne de code."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Étape 3 : Apprendre Python"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Python est LE langage de l'IA. Commencez par les bases : variables, boucles, fonctions."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Étape 4 : Suivre un tutoriel pratique"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Créez votre premier modèle : classification d'images, analyse de sentiments, ou prédiction de prix."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Étape 5 : Rejoindre une communauté"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Participez à des forums, suivez des experts, rejoignez des meetups. L'apprentissage de l'IA est un marathon ! \"L'Odyssée de l'IA en 30 jours\" vous accompagne jour après jour dans ce parcours."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "Analyse de sentiments avec NLTK : guide complet",
+      "slug": {
+        "_type": "slug",
+        "current": "analyse-sentiments-nltk"
+      },
+      "excerpt": "Apprenez à analyser les émotions dans les textes avec Python et NLTK. Tutoriel détaillé avec exemples pratiques et code prêt à l'emploi.",
+      "category": "tutoriels",
+      "tags": ["NLP", "Python", "NLTK"],
+      "isPublished": true,
+      "publishedAt": "2026-01-29T13:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'analyse de sentiments est une des applications les plus populaires du NLP. Ce tutoriel vous apprend à déterminer si un texte exprime une opinion positive, négative ou neutre."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Qu'est-ce que l'analyse de sentiments ?"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'analyse de sentiments (ou opinion mining) consiste à extraire automatiquement l'émotion ou l'opinion exprimée dans un texte. Applications : modération de commentaires, analyse de feedback client, veille de réputation sur les réseaux sociaux."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Installation"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Installez les bibliothèques nécessaires : pip install nltk textblob"}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Exemple basique"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Importez TextBlob, analysez un texte, et récupérez la polarité (de -1 à +1). Un score proche de 1 indique un sentiment positif, proche de -1 un sentiment négatif."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Cas d'usage réel"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Analysez des avis clients en masse pour identifier les retours négatifs nécessitant une intervention rapide. Vous pouvez automatiser ce processus pour traiter des milliers de commentaires quotidiennement."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Améliorations possibles"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Pour des résultats plus précis, entraînez un modèle sur vos propres données avec BERT ou RoBERTa. Ces modèles de deep learning offrent une compréhension contextuelle bien supérieure. \"L'Odyssée de l'IA en 30 jours\" explique ces architectures modernes en détail."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "L'IA est-elle vraiment \"intelligente\" ?",
+      "slug": {
+        "_type": "slug",
+        "current": "ia-vraiment-intelligente"
+      },
+      "excerpt": "Derrière le terme \"intelligence artificielle\" se cache une question philosophique profonde : qu'est-ce que l'intelligence ? Une réflexion sur les limites et les promesses de l'IA.",
+      "category": "reflexions",
+      "tags": ["Philosophie", "Éthique", "Conscience"],
+      "isPublished": true,
+      "publishedAt": "2026-01-30T15:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Chaque jour, nous entendons parler d'\"intelligence\" artificielle. Mais les machines sont-elles vraiment intelligentes ? Cette question, loin d'être anodine, touche au cœur même de ce qu'est l'intelligence."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Le test de Turing"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Alan Turing proposait en 1950 : si une machine peut tromper un humain en se faisant passer pour un autre humain, peut-on la considérer comme intelligente ? ChatGPT réussit ce test. Mais est-ce suffisant ?"}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Ce que l'IA fait très bien"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'IA excelle dans la reconnaissance de patterns, l'optimisation, et la génération de contenu. Elle bat les humains aux échecs, au Go, et diagnostique certaines maladies mieux que les médecins."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Ce qui manque encore"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'IA actuelle ne possède ni conscience de soi, ni compréhension profonde, ni créativité véritable, ni intelligence émotionnelle. Elle simule sans comprendre."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Une intelligence différente"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Comme le dit Yann LeCun : \"L'IA actuelle est comme un perroquet très sophistiqué. Elle répète ce qu'elle a appris de manière impressionnante, mais sans vraiment comprendre.\" La question reste ouverte. \"L'Odyssée de l'IA en 30 jours\" explore ces questions philosophiques en profondeur."}]
+        }
+      ]
+    },
+    {
+      "_type": "article",
+      "title": "Faut-il avoir peur de l'IA ? Entre mythes et réalités",
+      "slug": {
+        "_type": "slug",
+        "current": "faut-il-avoir-peur-ia"
+      },
+      "excerpt": "Skynet, robots tueurs, chômage de masse... L'IA cristallise de nombreuses peurs. Mais sont-elles fondées ? Démêlons le vrai du faux et explorons les vrais enjeux.",
+      "category": "reflexions",
+      "tags": ["Éthique", "Société", "Avenir"],
+      "isPublished": true,
+      "publishedAt": "2026-01-28T16:00:00Z",
+      "author": "Franklin KAMCHE",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Les films de science-fiction nous ont habitués à des IA maléfiques qui se retournent contre l'humanité. Mais qu'en est-il vraiment ? Entre fantasmes hollywoodiens et risques réels, faisons le point."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Les peurs infondées"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'IA consciente qui décide d'exterminer l'humanité relève de la fiction. Nous en sommes très loin technologiquement. Les robots tueurs autonomes existent, mais ils sont créés et contrôlés par des humains. Le vrai problème est humain, pas technologique."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Les vrais risques"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "Les biais algorithmiques discriminatoires. La manipulation de l'opinion via les deepfakes. La concentration du pouvoir entre quelques entreprises tech. La dépendance technologique excessive. Le chômage technologique dans certains secteurs."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Un outil neutre"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "L'IA est un outil. Comme le feu, l'électricité ou Internet avant elle. Elle peut servir le meilleur (diagnostics médicaux, lutte contre le changement climatique) ou le pire (surveillance de masse, armes autonomes). Tout dépend de l'usage que nous en faisons."}]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [{"_type": "span", "text": "Notre responsabilité collective"}]
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [{"_type": "span", "text": "La question n'est pas \"Faut-il avoir peur de l'IA ?\" mais \"Comment encadrer son développement ?\". C'est à nous, citoyens, de nous informer, de débattre, et d'exiger des garde-fous. L'ignorance est le vrai danger. \"L'Odyssée de l'IA en 30 jours\" vous donne les clés pour comprendre ces enjeux et participer au débat en citoyen éclairé."}]
+        }
+      ]
+    }
+  ]
+}
