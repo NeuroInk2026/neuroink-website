@@ -3,48 +3,35 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { GraduationCap, Clock, Target, BookOpen, ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { client } from '@/lib/sanity';
 
-interface Formation {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  shortDescription: string;
-  duration: string;
-  level: string;
-  price: string | number;
-  status: string;
-}
+const formations = [
+  {
+    id: '1',
+    title: 'Introduction à l\'Intelligence Artificielle',
+    shortDescription: 'Les bases de l\'IA expliquées simplement, sans prérequis techniques',
+    duration: '4 semaines',
+    level: 'debutant',
+    status: 'available'
+  },
+  {
+    id: '2',
+    title: 'Machine Learning Pratique',
+    shortDescription: 'Construisez vos premiers modèles de Machine Learning',
+    duration: '8 semaines',
+    level: 'intermediaire',
+    status: 'coming_soon'
+  },
+  {
+    id: '3',
+    title: 'Deep Learning et IA Générative',
+    shortDescription: 'Maîtrisez les réseaux de neurones et l\'IA générative',
+    duration: '12 semaines',
+    level: 'avance',
+    status: 'coming_soon'
+  }
+];
 
 export default function FormationsPage() {
-  const [formations, setFormations] = useState<Formation[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchFormations() {
-      try {
-        const query = `*[_type == "formation"] | order(order asc) {
-          _id,
-          title,
-          slug,
-          shortDescription,
-          duration,
-          level,
-          price,
-          status
-        }`;
-        const data = await client.fetch(query);
-        setFormations(data);
-      } catch (error) {
-        console.error('Erreur chargement formations:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchFormations();
-  }, []);
-
   const getLevelColor = (level: string) => {
     switch (level) {
       case 'debutant': return '#40E0D0';
@@ -88,93 +75,50 @@ export default function FormationsPage() {
         </div>
       </section>
 
-      {/* Contenu */}
+      {/* Contenu - Formations */}
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="text-center">
-              <div className="inline-block w-12 h-12 border-4 border-[#6B3FA0] border-t-transparent rounded-full animate-spin"></div>
-              <p className="mt-4 text-gray-600 font-raleway">Chargement des formations...</p>
-            </div>
-          ) : formations.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {formations.map((formation) => (
-                <motion.div
-                  key={formation._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105"
-                >
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
-                        style={{ backgroundColor: getLevelColor(formation.level) }}
-                      >
-                        {getLevelLabel(formation.level)}
-                      </span>
-                      {formation.status === 'available' ? (
-                        <span className="text-xs font-semibold text-green-600 font-raleway">Disponible</span>
-                      ) : (
-                        <span className="text-xs font-semibold text-orange-600 font-raleway">Bientôt</span>
-                      )}
-                    </div>
-
-                    <h3 className="text-xl font-bold mb-3 font-raleway" style={{ color: '#0F0D15' }}>
-                      {formation.title}
-                    </h3>
-
-                    <p className="text-gray-600 mb-4 font-raleway text-sm">
-                      {formation.shortDescription}
-                    </p>
-
-                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-500 font-raleway">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {formation.duration}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                      <div>
-                        <p className="text-2xl font-bold font-raleway" style={{ color: '#6B3FA0' }}>
-                          {typeof formation.price === 'number' ? `${formation.price}€` : formation.price}
-                        </p>
-                      </div>
-                      <ArrowRight className="w-5 h-5" style={{ color: '#00A3E0' }} />
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {formations.map((formation, index) => (
+              <motion.div
+                key={formation.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105"
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span
+                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
+                      style={{ backgroundColor: getLevelColor(formation.level) }}
+                    >
+                      {getLevelLabel(formation.level)}
+                    </span>
+                    {formation.status === 'available' ? (
+                      <span className="text-xs font-semibold text-green-600 font-raleway">✓ Disponible</span>
+                    ) : (
+                      <span className="text-xs font-semibold text-orange-600 font-raleway">Bientôt</span>
+                    )}
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-white rounded-2xl shadow-xl p-12 border-2 border-gray-100">
-                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 100%)' }}>
-                  <GraduationCap className="w-10 h-10 text-white" />
-                </div>
-                
-                <h2 className="text-3xl font-bold mb-4 font-raleway" style={{ color: '#0F0D15' }}>
-                  Nos formations arrivent bientôt !
-                </h2>
-                
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto font-raleway">
-                  Nous préparons des parcours de formation complets pour vous accompagner 
-                  dans votre apprentissage de l&apos;IA, quel que soit votre niveau.
-                </p>
 
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 font-raleway"
-                  style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 100%)' }}
-                >
-                  Retour à l&apos;accueil
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          )}
+                  <h3 className="text-xl font-bold mb-3 font-raleway" style={{ color: '#0F0D15' }}>
+                    {formation.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-4 font-raleway text-sm">
+                    {formation.shortDescription}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-sm text-gray-500 font-raleway">
+                    <Clock className="w-4 h-4" style={{ color: '#00A3E0' }} />
+                    {formation.duration}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
           {/* CTA Livre */}
           <div className="mt-16 rounded-2xl p-8 text-white" style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 50%, #40E0D0 100%)' }}>
@@ -188,10 +132,32 @@ export default function FormationsPage() {
             <div className="text-center">
               <Link
                 href="/livres"
-                className="inline-block px-8 py-3 bg-white font-semibold rounded-lg hover:bg-gray-100 transition-colors font-raleway"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-white font-semibold rounded-lg hover:bg-gray-100 transition-colors font-raleway"
                 style={{ color: '#6B3FA0' }}
               >
                 Découvrir le livre
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="mt-8 bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
+            <h3 className="text-xl font-bold text-gray-900 mb-3 font-raleway text-center">
+              Soyez informé du lancement des formations
+            </h3>
+            <p className="text-gray-600 mb-6 font-raleway text-center max-w-2xl mx-auto">
+              Inscrivez-vous à notre newsletter pour recevoir une alerte 
+              dès que nos formations seront disponibles.
+            </p>
+            <div className="text-center">
+              <Link
+                href="/#newsletter"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-xl font-raleway"
+                style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 100%)' }}
+              >
+                S&apos;inscrire à la newsletter
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
