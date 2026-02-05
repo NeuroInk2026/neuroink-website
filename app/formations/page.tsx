@@ -54,16 +54,13 @@ export default function FormationsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 font-raleway max-w-2xl mx-auto"
           >
-            Developpez vos competences en intelligence artificielle
+            Développez vos compétences en intelligence artificielle
           </motion.p>
         </div>
       </section>
 
-      {/* Filtre par niveau */}
+      {/* Filtre par niveau - SANS le mot "NIVEAU" */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <p className="text-sm font-raleway font-semibold text-gray-500 uppercase tracking-wider mb-3">
-          Niveau
-        </p>
         <div className="flex flex-wrap gap-2">
           {allLevels.map((lvl) => {
             const isActive = selectedLevel === lvl;
@@ -98,6 +95,7 @@ export default function FormationsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredFormations.map((formation, index) => {
             const colors = levelColors[formation.level];
+            
             return (
               <motion.div
                 key={formation.slug}
@@ -119,17 +117,19 @@ export default function FormationsPage() {
                       {levelLabels[formation.level]}
                     </span>
                     <span className="px-3 py-1 rounded-full text-xs font-raleway font-bold bg-amber-50 text-amber-600">
-                      Bientot
+                      Bientôt disponible
                     </span>
                   </div>
 
-                  {/* Badge GRATUIT */}
-                  <div className="mb-3">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-raleway font-bold bg-green-50 text-green-600">
-                      <Sparkles className="w-3 h-3" />
-                      GRATUIT
-                    </span>
-                  </div>
+                  {/* Badge GRATUIT - CONDITIONNEL selon isFree */}
+                  {formation.isFree && (
+                    <div className="mb-3">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-raleway font-bold bg-green-50 text-green-600">
+                        <Sparkles className="w-3 h-3" />
+                        GRATUIT
+                      </span>
+                    </div>
+                  )}
 
                   {/* Titre */}
                   <h2 className="text-lg font-bold font-raleway text-[#0F0D15] mb-2 group-hover:text-[#6B3FA0] transition-colors">
@@ -141,7 +141,7 @@ export default function FormationsPage() {
                     {formation.shortDescription}
                   </p>
 
-                  {/* Duree */}
+                  {/* Durée */}
                   <div className="flex items-center gap-2 text-sm text-gray-400 font-raleway mb-4">
                     <Clock className="w-4 h-4" />
                     {formation.duration}
@@ -167,7 +167,7 @@ export default function FormationsPage() {
       <section className="bg-[#0F0D15] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white font-raleway mb-4">
-            Vous souhaitez etre informe des lancements ?
+            Vous souhaitez être informé des lancements ?
           </h2>
           <p className="text-gray-400 font-raleway mb-6">
             Inscrivez-vous pour recevoir les informations sur nos prochaines formations.

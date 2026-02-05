@@ -3,17 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import LogoNeuroInk from '@/components/ui/LogoNeuroInk';
-
-const navLinks = [
-  { href: '/', label: 'Accueil' },
-  { href: '/livres', label: 'Livres' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/formations', label: 'Formations' },
-  { href: '/contact', label: 'Contact' },
-];
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,108 +13,100 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  const navigation = [
+    { name: 'Accueil', href: '/' },
+    { name: 'Livres', href: '/livres' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Formations', href: '/formations' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-white/80 backdrop-blur-sm'
+        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - taille reduite pour rester dans le bandeau */}
-          <LogoNeuroInk size="sm" />
+        <div className="flex items-center justify-between h-20">
+          {/* Logo - AGRANDI à 80px */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-neuroink.png"
+              alt="NeuroInk"
+              width={80}
+              height={80}
+              priority
+              className="h-auto"
+            />
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href ||
-                (link.href !== '/' && pathname.startsWith(link.href));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-4 py-2 rounded-lg font-raleway font-medium text-sm transition-all duration-300 ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-gray-700 hover:text-[#00A3E0]'
+          {/* Navigation Desktop */}
+          <div className="hidden md:flex items-center gap-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`font-raleway font-semibold transition-colors duration-300 relative group ${
+                  isActive(item.href)
+                    ? 'text-[#00A3E0]'
+                    : 'text-gray-700 hover:text-[#00A3E0]'
+                }`}
+              >
+                {item.name}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#00A3E0] transform transition-transform duration-300 ${
+                    isActive(item.href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                   }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="navbar-active"
-                      className="absolute inset-0 rounded-lg"
-                      style={{
-                        background: 'linear-gradient(135deg, #6B3FA0, #00A3E0)',
-                      }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </Link>
-              );
-            })}
+                />
+              </Link>
+            ))}
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Hamburger Mobile */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            aria-expanded={isOpen}
+            className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
           >
-            {isOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
-            )}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Menu Mobile */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 overflow-hidden"
+            className="md:hidden bg-white border-t border-gray-100"
           >
-            <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href ||
-                  (link.href !== '/' && pathname.startsWith(link.href));
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`block px-4 py-3 rounded-lg font-raleway font-medium text-base transition-all duration-200 ${
-                      isActive
-                        ? 'text-white'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#00A3E0]'
-                    }`}
-                    style={
-                      isActive
-                        ? { background: 'linear-gradient(135deg, #6B3FA0, #00A3E0)' }
-                        : undefined
-                    }
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+            <div className="px-4 py-4 space-y-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-3 rounded-lg font-raleway font-semibold transition-colors ${
+                    isActive(item.href)
+                      ? 'bg-[#00A3E0]/10 text-[#00A3E0]'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
           </motion.div>
         )}

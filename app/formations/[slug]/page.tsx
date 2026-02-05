@@ -33,10 +33,10 @@ export default function FormationDetailPage() {
         <div className="max-w-3xl mx-auto px-4 text-center py-20">
           <GraduationCap className="w-16 h-16 mx-auto mb-6 text-gray-300" />
           <h1 className="text-3xl font-bold font-raleway text-[#0F0D15] mb-4">
-            Formation non trouvee
+            Formation non trouvée
           </h1>
           <p className="text-gray-500 font-raleway mb-8">
-            Cette formation n&apos;existe pas ou a ete deplacee.
+            Cette formation n&apos;existe pas ou a été déplacée.
           </p>
           <Link
             href="/formations"
@@ -90,12 +90,15 @@ export default function FormationDetailPage() {
               {levelLabels[formation.level]}
             </span>
             <span className="px-3 py-1 rounded-full text-xs font-raleway font-bold bg-amber-500/20 text-amber-300">
-              Bientot disponible
+              Bientôt disponible
             </span>
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-raleway font-bold bg-green-500/20 text-green-300">
-              <Sparkles className="w-3 h-3" />
-              GRATUIT
-            </span>
+            {/* Badge GRATUIT - CONDITIONNEL selon isFree */}
+            {formation.isFree && (
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-raleway font-bold bg-green-500/20 text-green-300">
+                <Sparkles className="w-3 h-3" />
+                GRATUIT
+              </span>
+            )}
           </motion.div>
 
           {/* Titre */}
@@ -166,7 +169,7 @@ export default function FormationDetailPage() {
               </motion.div>
             ))}
 
-            {/* Programme detaille */}
+            {/* Programme détaillé */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -175,7 +178,7 @@ export default function FormationDetailPage() {
             >
               <h2 className="text-xl md:text-2xl font-bold font-raleway text-[#0F0D15] mb-6 flex items-center gap-3">
                 <GraduationCap className="w-6 h-6" style={{ color: colors.badge }} />
-                Programme detaille
+                Programme détaillé
               </h2>
               <div className="space-y-4">
                 {formation.modules.map((mod, mIdx) => (
@@ -194,7 +197,7 @@ export default function FormationDetailPage() {
                       </div>
                       <span className="flex-shrink-0 flex items-center gap-1 text-xs font-raleway font-semibold text-gray-400 bg-white px-2.5 py-1 rounded-full border border-gray-200">
                         <Clock className="w-3 h-3" />
-                        {mod.duration}
+                        {mod.duration}h
                       </span>
                     </div>
                   </div>
@@ -233,7 +236,7 @@ export default function FormationDetailPage() {
                 </ul>
               </motion.div>
 
-              {/* Prerequisites */}
+              {/* Prérequis */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -242,7 +245,7 @@ export default function FormationDetailPage() {
               >
                 <h3 className="font-bold font-raleway text-[#0F0D15] mb-3 flex items-center gap-2">
                   <BookOpen className="w-5 h-5" style={{ color: colors.badge }} />
-                  Prerequis
+                  Prérequis
                 </h3>
                 <ul className="space-y-2">
                   {formation.prerequisites.map((pre, idx) => (
@@ -284,17 +287,17 @@ export default function FormationDetailPage() {
                 style={{ background: `linear-gradient(135deg, ${colors.badge}15, ${colors.badge}05)`, border: `2px solid ${colors.badge}30` }}
               >
                 <p className="font-raleway font-semibold text-[#0F0D15] mb-2">
-                  Formation bientot disponible
+                  Formation bientôt disponible
                 </p>
                 <p className="text-sm text-gray-500 font-raleway mb-4">
-                  Soyez informe du lancement
+                  Soyez informé du lancement
                 </p>
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-raleway font-bold text-sm transition-all duration-300 hover:scale-105"
                   style={{ background: `linear-gradient(135deg, #6B3FA0, #00A3E0)` }}
                 >
-                  Me prevenir
+                  Me prévenir
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
@@ -312,6 +315,7 @@ export default function FormationDetailPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {formations
               .filter((f) => f.slug !== formation.slug)
+              .slice(0, 4)
               .map((other) => {
                 const otherColors = levelColors[other.level];
                 return (
@@ -327,6 +331,12 @@ export default function FormationDetailPage() {
                       >
                         {levelLabels[other.level]}
                       </span>
+                      {other.isFree && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-raleway font-bold bg-green-50 text-green-600">
+                          <Sparkles className="w-3 h-3" />
+                          GRATUIT
+                        </span>
+                      )}
                     </div>
                     <h3 className="font-bold font-raleway text-[#0F0D15] group-hover:text-[#6B3FA0] transition-colors mb-2">
                       {other.title}

@@ -8,15 +8,15 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: 'Question générale',
+    subject: 'general',
     message: '',
-    consent: false
+    rgpd: false
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.consent) {
+    if (!formData.rgpd) {
       alert('Veuillez accepter la politique de confidentialité');
       return;
     }
@@ -33,7 +33,7 @@ export default function ContactPage() {
       if (response.ok) {
         setStatus('success');
         setTimeout(() => {
-          setFormData({ name: '', email: '', subject: 'Question générale', message: '', consent: false });
+          setFormData({ name: '', email: '', subject: 'general', message: '', rgpd: false });
           setStatus('idle');
         }, 3000);
       } else {
@@ -108,10 +108,10 @@ export default function ContactPage() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2 font-raleway">Sujet *</label>
                       <select value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all font-raleway">
-                        <option>Question générale</option>
-                        <option>Partenariat</option>
-                        <option>Presse</option>
-                        <option>Autre</option>
+                        <option value="general">Question générale</option>
+                        <option value="partenariat">Partenariat</option>
+                        <option value="presse">Presse</option>
+                        <option value="autre">Autre</option>
                       </select>
                     </div>
 
@@ -122,8 +122,8 @@ export default function ContactPage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <input type="checkbox" id="consent" checked={formData.consent} onChange={e => setFormData({...formData, consent: e.target.checked})} className="mt-1" />
-                      <label htmlFor="consent" className="text-sm text-gray-600 font-raleway">
+                      <input type="checkbox" id="rgpd" checked={formData.rgpd} onChange={e => setFormData({...formData, rgpd: e.target.checked})} className="mt-1" />
+                      <label htmlFor="rgpd" className="text-sm text-gray-600 font-raleway">
                         J'accepte que mes données soient utilisées pour traiter ma demande conformément à la <a href="/confidentialite" className="underline" style={{ color: '#6B3FA0' }}>politique de confidentialité</a>
                       </label>
                     </div>
