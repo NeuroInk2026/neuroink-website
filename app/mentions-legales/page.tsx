@@ -100,14 +100,14 @@ export default function CGVPage() {
                 Les produits bénéficient de la garantie légale de conformité (articles L.217-4 et suivants du Code de la consommation) et de la garantie des vices cachés (articles 1641 et suivants du Code civil).
               </p>
               <p className="text-gray-700 leading-relaxed mt-2">
-                En cas de défaut de conformité, contactez-nous à neuroink.official@gmail.com avec une photo du problème.
+                En cas de défaut de conformité, contactez-nous à contact@neuroink.fr avec une photo du problème.
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold mb-4 font-raleway" style={{ color: '#6B3FA0' }}>8. Réclamations</h2>
               <p className="text-gray-700 leading-relaxed">
-                Pour toute réclamation, veuillez nous contacter à : <a href="mailto:neuroink.official@gmail.com" className="underline" style={{ color: '#00A3E0' }}>neuroink.official@gmail.com</a>
+                Pour toute réclamation, veuillez nous contacter à : <a href="mailto:contact@neuroink.fr" className="underline" style={{ color: '#00A3E0' }}>contact@neuroink.fr</a>
               </p>
               <p className="text-gray-700 leading-relaxed mt-2">
                 Nous nous engageons à traiter votre réclamation dans un délai de 48 heures ouvrées.

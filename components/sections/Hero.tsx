@@ -92,7 +92,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            NeuroInk démocratise l'intelligence artificielle avec des livres clairs,
+            NeuroInk démocratise l'intelligence artificielle avec des formations, des livres clairs,
             progressifs et sans prérequis
           </motion.p>
 

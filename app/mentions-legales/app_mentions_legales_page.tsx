@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
               <p className="text-gray-700">
                 <strong>NeuroInk</strong><br/>
                 Franklin KAMCHE<br/>
-                Email : neuroink.official@gmail.com
+                Email : contact@neuroink.fr
               </p>
             </div>
 

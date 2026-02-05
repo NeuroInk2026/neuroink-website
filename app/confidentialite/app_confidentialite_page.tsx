@@ -64,7 +64,7 @@ export default function ConfidentialitePage() {
                 <li>Droit d'opposition</li>
               </ul>
               <p className="text-gray-700 mt-4">
-                Pour exercer ces droits, contactez-nous à : <a href="mailto:neuroink.official@gmail.com" className="underline" style={{ color: '#6B3FA0' }}>neuroink.official@gmail.com</a>
+                Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@neuroink.fr" className="underline" style={{ color: '#6B3FA0' }}>contact@neuroink.fr</a>
               </p>
             </div>
 

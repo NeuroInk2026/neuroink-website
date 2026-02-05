@@ -32,7 +32,7 @@ export default function MentionsLegalesPage() {
               <h2 className="text-2xl font-bold mb-4 font-raleway" style={{ color: '#6B3FA0' }}>1. Éditeur du site</h2>
               <ul className="mt-3 space-y-1.5 text-gray-700">
                 <li><strong>Responsable de publication :</strong> Franklin KAMCHE</li>
-                <li><strong>Email :</strong> neuroink.official@gmail.com</li>
+                <li><strong>Email :</strong> contact@neuroink.fr</li>
               </ul>
             </div>
 

@@ -65,7 +65,7 @@ export default function ConfidentialitePage() {
                 <li><strong>Droit de retrait du consentement :</strong> retirer votre consentement à tout moment</li>
               </ul>
               <p className="text-gray-700 leading-relaxed mt-3">
-                Pour exercer ces droits, contactez-nous à : <a href="mailto:neuroink.official@gmail.com" className="underline" style={{ color: '#00A3E0' }}>neuroink.official@gmail.com</a>
+                Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@neuroink.fr" className="underline" style={{ color: '#00A3E0' }}>contact@neuroink.fr</a>
               </p>
               <p className="text-gray-700 leading-relaxed mt-2">
                 En cas de réclamation, vous pouvez également saisir la CNIL (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: '#00A3E0' }}>www.cnil.fr</a>

@@ -148,8 +148,8 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5" style={{ color: '#6B3FA0' }} />
                   Email direct
                 </h3>
-                <a href="mailto:neuroink.official@gmail.com" className="text-lg font-medium font-raleway hover:underline" style={{ color: '#6B3FA0' }}>
-                  neuroink.official@gmail.com
+                <a href="mailto:contact@neuroink.fr" className="text-lg font-medium font-raleway hover:underline" style={{ color: '#6B3FA0' }}>
+                  contact@neuroink.fr
                 </a>
               </div>
 

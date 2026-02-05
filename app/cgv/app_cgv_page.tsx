@@ -57,7 +57,7 @@ export default function CGVPage() {
               <h2 className="text-2xl font-bold mb-4" style={{ color: '#6B3FA0' }}>Réclamations</h2>
               <p className="text-gray-700">
                 Pour toute réclamation concernant votre commande, contactez d'abord la plateforme de vente.
-                Pour toute question sur le contenu du livre, contactez-nous à : <a href="mailto:neuroink.official@gmail.com" className="underline" style={{ color: '#6B3FA0' }}>neuroink.official@gmail.com</a>
+                Pour toute question sur le contenu du livre, contactez-nous à : <a href="mailto:contact@neuroink.fr" className="underline" style={{ color: '#6B3FA0' }}>contact@neuroink.fr</a>
               </p>
             </div>
 

@@ -8,9 +8,9 @@ export const SITE_CONFIG = {
   fullName: 'NeuroInk',
   url: 'https://neuroink.fr',
   domain: 'neuroink.fr',
-  description: 'NeuroInk démocratise l\'intelligence artificielle avec des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE.',
+  description: 'NeuroInk démocratise l\'intelligence artificielle avec des formations, des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE.',
   tagline: 'L\'intelligence artificielle accessible à tous',
-  email: 'neuroink.official@gmail.com',
+  email: 'contact@neuroink.fr',
   phone: null,
   address: null,
   locale: 'fr_FR',
@@ -31,7 +31,7 @@ export const AUTHOR = {
     '15 000+ apprenants formés à l\'IA depuis 2021'
   ],
   image: '/images/photo-franklin.jpg',
-  email: 'neuroink.official@gmail.com',
+  email: 'contact@neuroink.fr',
   linkedin: 'https://www.linkedin.com/in/franklin-kamche',
   linktree: 'https://linktr.ee/neuroink',
 } as const;
@@ -82,7 +82,7 @@ export const SEO_KEYWORDS = {
 export const PAGES_META = {
   home: {
     title: 'NeuroInk - L\'intelligence artificielle accessible à tous | Franklin KAMCHE',
-    description: 'NeuroInk démocratise l\'IA avec des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE, ingénieur et formateur.',
+    description: 'NeuroInk démocratise l\'IA avec des formations, des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE, ingénieur et formateur.',
     keywords: [...SEO_KEYWORDS.primary, ...SEO_KEYWORDS.secondary.slice(0, 5)],
   },
   livres: {

@@ -18,13 +18,13 @@ export default defineType({
       title: 'Description du site',
       type: 'text',
       rows: 3,
-      initialValue: 'NeuroInk démocratise l\'intelligence artificielle avec des livres clairs et progressifs.',
+      initialValue: 'NeuroInk démocratise l\'intelligence artificielle avec des formations, des livres clairs et progressifs.',
     }),
     defineField({
       name: 'contactEmail',
       title: 'Email de contact',
       type: 'string',
-      initialValue: 'neuroink.official@gmail.com',
+      initialValue: 'contact@neuroink.fr',
       description: 'Email affiché sur le site et utilisé pour le formulaire de contact',
     }),
 
@@ -59,7 +59,7 @@ export default defineType({
       title: 'Sous-titre Hero',
       type: 'text',
       rows: 3,
-      initialValue: 'NeuroInk démocratise l\'intelligence artificielle avec des livres clairs, progressifs et sans prérequis. Rejoignez les 15 000+ apprenants qui ont déjà franchi le pas.',
+      initialValue: 'NeuroInk démocratise l\'intelligence artificielle avec des formations, des livres clairs, progressifs et sans prérequis. Rejoignez les 15 000+ apprenants qui ont déjà franchi le pas.',
     }),
     defineField({
       name: 'heroDynamicWords',

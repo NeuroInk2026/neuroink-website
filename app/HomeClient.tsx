@@ -151,7 +151,7 @@ export default function HomeClient({ siteSettings, sanityTestimonials }: HomeCli
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg sm:text-xl text-white/80 max-w-4xl mx-auto text-center font-raleway leading-relaxed"
             >
-              NeuroInk démocratise l&apos;intelligence artificielle avec des livres clairs,
+              NeuroInk démocratise l&apos;intelligence artificielle avec des formations, des livres clairs,
               progressifs et sans prérequis. Rejoignez les{' '}
               <span className="font-semibold" style={{ color: '#00A3E0' }}>15 000+ apprenants</span>
               {' '}qui ont déjà franchi le pas.

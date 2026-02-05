@@ -124,7 +124,7 @@ Accès : `https://neuroink.fr/admin` (ou Sanity Studio déployé)
 
 ## 📞 Contact
 
-- **Email** : neuroink.official@gmail.com
+- **Email** : contact@neuroink.fr
 - **LinkedIn** : [NeuroInk](https://www.linkedin.com/company/neuroinkai)
 - **Instagram** : [@neuroink.official](https://www.instagram.com/neuroink.official)
 

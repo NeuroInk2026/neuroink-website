@@ -119,7 +119,7 @@ export const homeMetadata = (): Metadata =>
   generateMetadata({
     title: 'NeuroInk - L\'intelligence artificielle accessible à tous | Franklin KAMCHE',
     description:
-      'NeuroInk démocratise l\'IA avec des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE, ingénieur et formateur.',
+      'NeuroInk démocratise l\'IA avec des formations, des livres clairs et progressifs. Découvrez L\'Odyssée de l\'IA en 30 jours par Franklin KAMCHE, ingénieur et formateur.',
     keywords: [
       'Franklin KAMCHE',
       'NeuroInk',
