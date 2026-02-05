@@ -5,45 +5,41 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface LogoNeuroInkProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   variant?: 'default' | 'white';
-  showImage?: boolean;
+  showText?: boolean;
 }
 
 const sizeMap = {
-  sm: { text: 'text-xl', img: { w: 120, h: 35 } },
-  md: { text: 'text-2xl', img: { w: 150, h: 44 } },
-  lg: { text: 'text-3xl', img: { w: 180, h: 52 } },
+  xs: { img: { w: 40, h: 40 }, text: 'text-lg' },
+  sm: { img: { w: 50, h: 50 }, text: 'text-xl' },
+  md: { img: { w: 60, h: 60 }, text: 'text-2xl' },
+  lg: { img: { w: 80, h: 80 }, text: 'text-3xl' },
 };
 
-export default function LogoNeuroInk({ 
-  size = 'md', 
+export default function LogoNeuroInk({
+  size = 'md',
   variant = 'default',
-  showImage = true 
+  showText = true,
 }: LogoNeuroInkProps) {
-  const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const { text, img } = sizeMap[size];
+  const { img, text } = sizeMap[size];
 
   return (
-    <Link href="/" className="flex items-center gap-2 relative" aria-label="NeuroInk - Accueil">
-      {/* Image logo - essaie de charger */}
-      {showImage && !imgError && (
+    <Link href="/" className="flex items-center gap-2" aria-label="NeuroInk - Accueil">
+      {/* Image logo */}
+      {!imgError ? (
         <Image
           src="/images/logo-neuroink.png"
           alt="NeuroInk"
           width={img.w}
           height={img.h}
-          className={`object-contain transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
-          onLoad={() => setImgLoaded(true)}
+          className="object-contain"
           onError={() => setImgError(true)}
           priority
           unoptimized
         />
-      )}
-
-      {/* Texte logo - TOUJOURS visible si image pas chargée */}
-      {(!imgLoaded || imgError) && (
+      ) : showText ? (
         <span className={`font-raleway font-extrabold tracking-tight ${text}`}>
           <span style={{ color: variant === 'white' ? '#FFFFFF' : '#00A3E0' }}>
             NEURO
@@ -52,7 +48,7 @@ export default function LogoNeuroInk({
             INK
           </span>
         </span>
-      )}
+      ) : null}
     </Link>
   );
 }

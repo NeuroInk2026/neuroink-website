@@ -3,26 +3,21 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, User, BookOpen } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 import {
   blogArticles,
   categoryLabels,
   categoryColors,
-  levelLabels,
-  levelColors,
   filterArticles,
   type ArticleCategory,
-  type ArticleLevel,
 } from '@/lib/blog-data';
 
 const allCategories: Array<ArticleCategory | 'all'> = ['all', 'actualites', 'tutoriels', 'reflexions'];
-const allLevels: Array<ArticleLevel | 'all'> = ['all', 'debutant', 'intermediaire', 'avance'];
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<ArticleCategory | 'all'>('all');
-  const [selectedLevel, setSelectedLevel] = useState<ArticleLevel | 'all'>('all');
 
-  const filteredArticles = filterArticles(selectedCategory, selectedLevel);
+  const filteredArticles = filterArticles(selectedCategory, 'all');
 
   return (
     <main className="min-h-screen bg-white">
@@ -55,68 +50,28 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Filtres */}
+      {/* Filtre par categorie uniquement */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filtre par categorie */}
-        <div className="mb-4">
-          <p className="text-sm font-raleway font-semibold text-gray-500 uppercase tracking-wider mb-3">
-            Categorie
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {allCategories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              const label = cat === 'all' ? 'Tous' : categoryLabels[cat];
-              const color = cat === 'all' ? '#6B7280' : categoryColors[cat];
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-raleway font-semibold transition-all duration-300 ${
-                    isActive
-                      ? 'text-white shadow-lg scale-105'
-                      : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                  style={isActive ? { backgroundColor: color } : undefined}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Filtre par niveau */}
-        <div>
-          <p className="text-sm font-raleway font-semibold text-gray-500 uppercase tracking-wider mb-3">
-            Niveau
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {allLevels.map((lvl) => {
-              const isActive = selectedLevel === lvl;
-              const label = lvl === 'all' ? 'Tous les niveaux' : levelLabels[lvl];
-              const colors = lvl === 'all' ? null : levelColors[lvl];
-              return (
-                <button
-                  key={lvl}
-                  onClick={() => setSelectedLevel(lvl)}
-                  className={`px-4 py-2 rounded-full text-sm font-raleway font-semibold transition-all duration-300 border-2 ${
-                    isActive
-                      ? 'shadow-lg scale-105'
-                      : 'border-transparent bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                  style={
-                    isActive && colors
-                      ? { backgroundColor: colors.bg, color: colors.text, borderColor: colors.text }
-                      : isActive
-                      ? { backgroundColor: '#374151', color: '#FFFFFF', borderColor: '#374151' }
-                      : undefined
-                  }
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {allCategories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            const label = cat === 'all' ? 'Tous' : categoryLabels[cat];
+            const color = cat === 'all' ? '#6B7280' : categoryColors[cat];
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-5 py-2.5 rounded-full text-sm font-raleway font-semibold transition-all duration-300 ${
+                  isActive
+                    ? 'text-white shadow-lg scale-105'
+                    : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
+                }`}
+                style={isActive ? { backgroundColor: color } : undefined}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       </section>
 
@@ -126,16 +81,13 @@ export default function BlogPage() {
           <div className="text-center py-16">
             <BookOpen className="w-12 h-12 mx-auto mb-4 text-gray-300" />
             <p className="text-gray-500 font-raleway text-lg">
-              Aucun article ne correspond a ces filtres.
+              Aucun article ne correspond a ce filtre.
             </p>
             <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setSelectedLevel('all');
-              }}
+              onClick={() => setSelectedCategory('all')}
               className="mt-4 text-[#00A3E0] font-raleway font-semibold hover:underline"
             >
-              Reinitialiser les filtres
+              Voir tous les articles
             </button>
           </div>
         ) : (
@@ -155,24 +107,13 @@ export default function BlogPage() {
                 />
 
                 <div className="p-6 flex flex-col flex-grow">
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {/* Badge categorie */}
+                  {/* Badge categorie uniquement */}
+                  <div className="mb-3">
                     <span
                       className="px-3 py-1 rounded-full text-xs font-raleway font-bold text-white"
                       style={{ backgroundColor: categoryColors[article.category] }}
                     >
                       {categoryLabels[article.category]}
-                    </span>
-                    {/* Badge niveau */}
-                    <span
-                      className="px-3 py-1 rounded-full text-xs font-raleway font-bold"
-                      style={{
-                        backgroundColor: levelColors[article.level].bg,
-                        color: levelColors[article.level].text,
-                      }}
-                    >
-                      {levelLabels[article.level]}
                     </span>
                   </div>
 
@@ -185,18 +126,6 @@ export default function BlogPage() {
                   <p className="text-gray-600 font-raleway text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
                     {article.excerpt}
                   </p>
-
-                  {/* Meta */}
-                  <div className="flex items-center gap-4 text-xs text-gray-400 font-raleway mb-4">
-                    <span className="flex items-center gap-1">
-                      <User className="w-3.5 h-3.5" />
-                      {article.author}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      {article.readTime}
-                    </span>
-                  </div>
 
                   {/* Bouton Lire */}
                   <Link
@@ -216,7 +145,7 @@ export default function BlogPage() {
         {/* Compteur */}
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-400 font-raleway">
-            {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} affiche{filteredArticles.length > 1 ? 's' : ''}
+            {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''}
           </p>
         </div>
       </section>

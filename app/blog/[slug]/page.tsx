@@ -3,15 +3,12 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Clock, User, BookOpen, ExternalLink, Bookmark } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, Bookmark } from 'lucide-react';
 import {
   getArticleBySlug,
   getRelatedArticles,
   categoryLabels,
   categoryColors,
-  levelLabels,
-  levelColors,
-  blogArticles,
 } from '@/lib/blog-data';
 
 export default function ArticlePage() {
@@ -20,7 +17,7 @@ export default function ArticlePage() {
   const article = getArticleBySlug(slug);
   const relatedArticles = getRelatedArticles(slug);
 
-  // 404 - Article non trouve
+  // 404
   if (!article) {
     return (
       <main className="min-h-screen bg-white pt-28">
@@ -46,7 +43,6 @@ export default function ArticlePage() {
   }
 
   const catColor = categoryColors[article.category];
-  const lvlColors = levelColors[article.level];
 
   return (
     <main className="min-h-screen bg-white">
@@ -75,27 +71,18 @@ export default function ArticlePage() {
             </Link>
           </motion.div>
 
-          {/* Badges */}
+          {/* Badge categorie uniquement */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap gap-2 mb-4"
+            className="mb-4"
           >
             <span
               className="px-3 py-1 rounded-full text-xs font-raleway font-bold text-white"
               style={{ backgroundColor: catColor }}
             >
               {categoryLabels[article.category]}
-            </span>
-            <span
-              className="px-3 py-1 rounded-full text-xs font-raleway font-bold"
-              style={{
-                backgroundColor: lvlColors.bg,
-                color: lvlColors.text,
-              }}
-            >
-              {levelLabels[article.level]}
             </span>
           </motion.div>
 
@@ -109,23 +96,15 @@ export default function ArticlePage() {
             {article.title}
           </motion.h1>
 
-          {/* Meta */}
+          {/* Meta - uniquement nombre de sources */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center gap-4 text-sm text-gray-400 font-raleway"
+            className="flex items-center gap-2 text-sm text-gray-400 font-raleway"
           >
-            <span className="flex items-center gap-1.5">
-              <User className="w-4 h-4" />
-              {article.author}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4" />
-              {article.readTime} de lecture
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Bookmark className="w-4 h-4" />
+            <Bookmark className="w-4 h-4" />
+            <span>
               {article.sources.length} source{article.sources.length > 1 ? 's' : ''} citee{article.sources.length > 1 ? 's' : ''}
             </span>
           </motion.div>
@@ -142,7 +121,7 @@ export default function ArticlePage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mb-10 pb-8 border-b border-gray-100"
           >
-            <p className="text-lg md:text-xl text-gray-700 font-raleway leading-relaxed italic" style={{ color: catColor }}>
+            <p className="text-lg md:text-xl font-raleway leading-relaxed italic" style={{ color: catColor }}>
               {article.excerpt}
             </p>
           </motion.div>
@@ -196,7 +175,7 @@ export default function ArticlePage() {
               <Link
                 href="/livres"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-raleway font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                style={{ background: `linear-gradient(135deg, #6B3FA0, #00A3E0)` }}
+                style={{ background: 'linear-gradient(135deg, #6B3FA0, #00A3E0)' }}
               >
                 Decouvrir nos livres
                 <ArrowRight className="w-4 h-4" />
@@ -281,21 +260,12 @@ export default function ArticlePage() {
                   href={`/blog/${related.slug}`}
                   className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="flex gap-2 mb-3">
+                  <div className="mb-3">
                     <span
                       className="px-2.5 py-0.5 rounded-full text-xs font-raleway font-bold text-white"
                       style={{ backgroundColor: categoryColors[related.category] }}
                     >
                       {categoryLabels[related.category]}
-                    </span>
-                    <span
-                      className="px-2.5 py-0.5 rounded-full text-xs font-raleway font-bold"
-                      style={{
-                        backgroundColor: levelColors[related.level].bg,
-                        color: levelColors[related.level].text,
-                      }}
-                    >
-                      {levelLabels[related.level]}
                     </span>
                   </div>
                   <h3 className="font-bold font-raleway text-[#0F0D15] group-hover:text-[#6B3FA0] transition-colors mb-2">

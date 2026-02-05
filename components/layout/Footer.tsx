@@ -41,10 +41,10 @@ export default function Footer() {
     <footer className="bg-[#0F0D15] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Colonne 1 : Logo + Description */}
+          {/* Colonne 1 : Logo image uniquement + Description */}
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <LogoNeuroInk size="lg" variant="white" showImage={false} />
+              <LogoNeuroInk size="lg" showText={false} />
             </div>
             <p className="text-gray-400 text-sm font-raleway leading-relaxed">
               NeuroInk democratise l&apos;intelligence artificielle a travers
