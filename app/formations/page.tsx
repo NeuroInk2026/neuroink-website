@@ -2,29 +2,56 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { GraduationCap, Clock, Target, BookOpen, ArrowRight } from 'lucide-react';
+import { GraduationCap, Clock, Target, BookOpen, Brain, ArrowRight } from 'lucide-react';
 
 const formations = [
   {
-    id: '1',
+    id: 'intro-ia-debutant',
     title: 'Introduction à l\'Intelligence Artificielle',
     shortDescription: 'Les bases de l\'IA expliquées simplement, sans prérequis techniques',
     duration: '4 semaines',
     level: 'debutant',
-    status: 'available'
+    price: 'gratuit',
+    status: 'coming_soon'
   },
   {
-    id: '2',
+    id: 'fondamentaux-ml',
+    title: 'Fondamentaux du Machine Learning',
+    shortDescription: 'Comprenez les concepts essentiels du Machine Learning avec des exemples concrets',
+    duration: '6 semaines',
+    level: 'debutant',
+    price: 'gratuit',
+    status: 'coming_soon'
+  },
+  {
+    id: 'ia-quotidien',
+    title: 'L\'IA dans votre quotidien professionnel',
+    shortDescription: 'Utilisez les outils d\'IA pour améliorer votre productivité au travail',
+    duration: '3 semaines',
+    level: 'debutant',
+    price: 'gratuit',
+    status: 'coming_soon'
+  },
+  {
+    id: 'ml-pratique',
     title: 'Machine Learning Pratique',
-    shortDescription: 'Construisez vos premiers modèles de Machine Learning',
+    shortDescription: 'Construisez vos premiers modèles de Machine Learning avec Python',
     duration: '8 semaines',
     level: 'intermediaire',
     status: 'coming_soon'
   },
   {
-    id: '3',
+    id: 'nlp-avance',
+    title: 'Traitement du Langage Naturel (NLP)',
+    shortDescription: 'Maîtrisez les techniques avancées de compréhension et génération de texte',
+    duration: '10 semaines',
+    level: 'intermediaire',
+    status: 'coming_soon'
+  },
+  {
+    id: 'deep-learning-ia-generative',
     title: 'Deep Learning et IA Générative',
-    shortDescription: 'Maîtrisez les réseaux de neurones et l\'IA générative',
+    shortDescription: 'Maîtrisez les réseaux de neurones profonds et créez vos propres modèles génératifs',
     duration: '12 semaines',
     level: 'avance',
     status: 'coming_soon'
@@ -47,6 +74,15 @@ export default function FormationsPage() {
       case 'intermediaire': return 'Intermédiaire';
       case 'avance': return 'Avancé';
       default: return level;
+    }
+  };
+
+  const getLevelIcon = (level: string) => {
+    switch (level) {
+      case 'debutant': return Target;
+      case 'intermediaire': return BookOpen;
+      case 'avance': return Brain;
+      default: return Target;
     }
   };
 
@@ -79,45 +115,70 @@ export default function FormationsPage() {
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {formations.map((formation, index) => (
-              <motion.div
-                key={formation.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105"
-              >
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
-                      style={{ backgroundColor: getLevelColor(formation.level) }}
-                    >
-                      {getLevelLabel(formation.level)}
-                    </span>
-                    {formation.status === 'available' ? (
-                      <span className="text-xs font-semibold text-green-600 font-raleway">✓ Disponible</span>
-                    ) : (
-                      <span className="text-xs font-semibold text-orange-600 font-raleway">Bientôt</span>
-                    )}
-                  </div>
+            {formations.map((formation, index) => {
+              const LevelIcon = getLevelIcon(formation.level);
+              return (
+                <Link key={formation.id} href={`/formations/${formation.id}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105 cursor-pointer h-full"
+                  >
+                    <div className="p-6 h-full flex flex-col">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <LevelIcon
+                            className="w-5 h-5"
+                            style={{ color: getLevelColor(formation.level) }}
+                          />
+                          <span
+                            className="text-sm font-semibold font-raleway"
+                            style={{ color: getLevelColor(formation.level) }}
+                          >
+                            {getLevelLabel(formation.level)}
+                          </span>
+                        </div>
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full font-raleway" style={{ backgroundColor: 'rgba(255, 165, 0, 0.15)', color: '#FF8C00' }}>
+                          Bientôt
+                        </span>
+                      </div>
 
-                  <h3 className="text-xl font-bold mb-3 font-raleway" style={{ color: '#0F0D15' }}>
-                    {formation.title}
-                  </h3>
+                      {formation.price === 'gratuit' && (
+                        <div className="mb-3">
+                          <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white font-raleway" style={{ backgroundColor: '#40E0D0' }}>
+                            ✨ GRATUIT
+                          </span>
+                        </div>
+                      )}
 
-                  <p className="text-gray-600 mb-4 font-raleway text-sm">
-                    {formation.shortDescription}
-                  </p>
+                      <h3 className="text-xl font-bold mb-3 font-raleway line-clamp-2 flex-grow" style={{ color: '#0F0D15' }}>
+                        {formation.title}
+                      </h3>
 
-                  <div className="flex items-center gap-2 text-sm text-gray-500 font-raleway">
-                    <Clock className="w-4 h-4" style={{ color: '#00A3E0' }} />
-                    {formation.duration}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                      <p className="text-gray-600 mb-4 font-raleway text-sm line-clamp-3">
+                        {formation.shortDescription}
+                      </p>
+
+                      <div className="flex items-center gap-2 mb-4 text-sm text-gray-500 font-raleway">
+                        <Clock className="w-4 h-4" style={{ color: '#00A3E0' }} />
+                        {formation.duration}
+                      </div>
+
+                      <div className="pt-4 border-t border-gray-200 mt-auto">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium font-raleway" style={{ color: '#6B3FA0' }}>
+                            En savoir plus
+                          </span>
+                          <ArrowRight className="w-5 h-5" style={{ color: '#00A3E0' }} />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
 
           {/* CTA Livre */}

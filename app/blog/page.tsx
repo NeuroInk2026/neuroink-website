@@ -2,68 +2,71 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FileText, Calendar, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRight, Filter } from 'lucide-react';
+import { useState } from 'react';
 
 const articles = [
   {
-    id: '1',
+    id: 'chatgpt-avenir-travail',
     title: 'ChatGPT et l\'avenir du travail : opportunité ou menace ?',
     excerpt: 'L\'intelligence artificielle transforme profondément le monde du travail. Découvrez comment ChatGPT et les IA génératives redéfinissent les métiers et créent de nouvelles opportunités.',
     category: 'actualites',
-    publishedAt: '2025-02-01',
+    source: 'MIT Technology Review',
   },
   {
-    id: '2',
+    id: 'google-gemini-ultra',
     title: 'Google lance Gemini Ultra : une nouvelle ère pour l\'IA ?',
     excerpt: 'Google dévoile Gemini Ultra, son modèle d\'IA le plus puissant à ce jour. Quelles sont ses capacités et comment se compare-t-il à GPT-4 ?',
     category: 'actualites',
-    publishedAt: '2025-01-28',
+    source: 'Nature',
   },
   {
-    id: '3',
+    id: 'europe-ai-act',
     title: 'L\'Europe adopte l\'AI Act : ce qui change pour vous',
-    excerpt: 'La nouvelle réglement ation européenne sur l\'IA est adoptée. Découvrez les implications pour les entreprises et les citoyens.',
+    excerpt: 'La nouvelle réglementation européenne sur l\'IA est adoptée. Découvrez les implications pour les entreprises et les citoyens.',
     category: 'actualites',
-    publishedAt: '2025-01-25',
+    source: 'Science Magazine',
   },
   {
-    id: '4',
+    id: 'chatbot-python-30min',
     title: 'Créer votre premier chatbot avec Python en 30 minutes',
     excerpt: 'Un guide pratique pour construire votre premier chatbot IA en utilisant Python et OpenAI. Idéal pour les débutants !',
     category: 'tutoriels',
-    publishedAt: '2025-01-20',
+    source: 'Stanford AI Lab',
   },
   {
-    id: '5',
+    id: 'debuter-ia-5-etapes',
     title: 'Débuter avec l\'IA en 5 étapes simples',
     excerpt: 'Vous voulez vous lancer dans l\'IA mais ne savez pas par où commencer ? Voici un plan d\'action clair et progressif.',
     category: 'tutoriels',
-    publishedAt: '2025-01-15',
+    source: 'MIT OpenCourseWare',
   },
   {
-    id: '6',
+    id: 'analyse-sentiments-nltk',
     title: 'Analyse de sentiments avec NLTK : guide complet',
     excerpt: 'Apprenez à analyser les émotions dans les textes grâce au traitement du langage naturel et à la bibliothèque NLTK.',
     category: 'tutoriels',
-    publishedAt: '2025-01-10',
+    source: 'Carnegie Mellon University',
   },
   {
-    id: '7',
+    id: 'ia-vraiment-intelligente',
     title: 'L\'IA est-elle vraiment "intelligente" ?',
     excerpt: 'Une réflexion philosophique sur la nature de l\'intelligence artificielle. Peut-on vraiment parler d\'intelligence ?',
     category: 'reflexions',
-    publishedAt: '2025-01-05',
+    source: 'Oxford Internet Institute',
   },
   {
-    id: '8',
+    id: 'peur-ia-mythes-realites',
     title: 'Faut-il avoir peur de l\'IA ? Entre mythes et réalités',
     excerpt: 'Démêlons le vrai du faux concernant les risques de l\'IA. Entre fantasmes hollywoodiens et enjeux réels.',
     category: 'reflexions',
-    publishedAt: '2025-01-01',
+    source: 'Harvard Business Review',
   }
 ];
 
 export default function BlogPage() {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'actualites': return '#00A3E0';
@@ -82,14 +85,9 @@ export default function BlogPage() {
     }
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+  const filteredArticles = selectedCategory === 'all' 
+    ? articles 
+    : articles.filter(a => a.category === selectedCategory);
 
   return (
     <main className="min-h-screen bg-white">
@@ -116,50 +114,99 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Contenu - Articles */}
+      {/* Filtres */}
+      <section className="py-8 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 flex-wrap">
+            <Filter className="w-5 h-5 text-gray-500" />
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
+                selectedCategory === 'all'
+                  ? 'text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              style={selectedCategory === 'all' ? { backgroundColor: '#6B3FA0' } : {}}
+            >
+              Tous
+            </button>
+            <button
+              onClick={() => setSelectedCategory('actualites')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
+                selectedCategory === 'actualites'
+                  ? 'text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              style={selectedCategory === 'actualites' ? { backgroundColor: '#00A3E0' } : {}}
+            >
+              Actualités
+            </button>
+            <button
+              onClick={() => setSelectedCategory('tutoriels')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
+                selectedCategory === 'tutoriels'
+                  ? 'text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              style={selectedCategory === 'tutoriels' ? { backgroundColor: '#6B3FA0' } : {}}
+            >
+              Tutoriels
+            </button>
+            <button
+              onClick={() => setSelectedCategory('reflexions')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
+                selectedCategory === 'reflexions'
+                  ? 'text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              style={selectedCategory === 'reflexions' ? { backgroundColor: '#40E0D0' } : {}}
+            >
+              Réflexions
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Articles */}
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, index) => (
-              <motion.div
-                key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105"
-              >
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span
-                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
-                      style={{ backgroundColor: getCategoryColor(article.category) }}
-                    >
-                      {getCategoryLabel(article.category)}
-                    </span>
+            {filteredArticles.map((article, index) => (
+              <Link key={article.id} href={`/blog/${article.id}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span
+                        className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
+                        style={{ backgroundColor: getCategoryColor(article.category) }}
+                      >
+                        {getCategoryLabel(article.category)}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold mb-3 font-raleway line-clamp-2" style={{ color: '#0F0D15' }}>
+                      {article.title}
+                    </h3>
+
+                    <p className="text-gray-600 mb-4 font-raleway text-sm line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                      <span className="text-sm font-medium font-raleway" style={{ color: '#6B3FA0' }}>
+                        Lire l&apos;article
+                      </span>
+                      <ArrowRight className="w-5 h-5" style={{ color: '#00A3E0' }} />
+                    </div>
                   </div>
-
-                  <h3 className="text-xl font-bold mb-3 font-raleway line-clamp-2" style={{ color: '#0F0D15' }}>
-                    {article.title}
-                  </h3>
-
-                  <p className="text-gray-600 mb-4 font-raleway text-sm line-clamp-3">
-                    {article.excerpt}
-                  </p>
-
-                  <div className="flex items-center gap-2 mb-4 text-xs text-gray-500 font-raleway">
-                    <Calendar className="w-4 h-4" />
-                    {formatDate(article.publishedAt)}
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <span className="text-sm font-medium font-raleway" style={{ color: '#6B3FA0' }}>
-                      Lire l&apos;article
-                    </span>
-                    <ArrowRight className="w-5 h-5" style={{ color: '#00A3E0' }} />
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
 
