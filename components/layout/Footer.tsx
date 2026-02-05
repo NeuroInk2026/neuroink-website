@@ -1,111 +1,132 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { Linkedin, Instagram } from 'lucide-react';
+import { Linkedin, Instagram, ExternalLink } from 'lucide-react';
+import LogoNeuroInk from '@/components/ui/LogoNeuroInk';
 
-const navigation = {
-  main: [
-    { name: 'Accueil', href: '/' },
-    { name: 'Livres', href: '/livres' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Formations', href: '/formations' },
-    { name: 'Contact', href: '/contact' },
-  ],
-  legal: [
-    { name: 'Mentions légales', href: '/mentions-legales' },
-    { name: 'Politique de confidentialité', href: '/confidentialite' },
-    { name: 'CGV', href: '/cgv' },
-  ],
-  social: [
-    {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/neuroinkai',
-      icon: Linkedin,
-    },
-    {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/neuroink.official',
-      icon: Instagram,
-    },
-  ],
-};
+const footerNavLinks = [
+  { href: '/', label: 'Accueil' },
+  { href: '/livres', label: 'Livres' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/formations', label: 'Formations' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const legalLinks = [
+  { href: '/mentions-legales', label: 'Mentions legales' },
+  { href: '/confidentialite', label: 'Politique de confidentialite' },
+  { href: '/cgv', label: 'CGV' },
+];
+
+const socialLinks = [
+  {
+    href: 'https://www.linkedin.com/company/neuroinkai',
+    label: 'LinkedIn',
+    icon: Linkedin,
+  },
+  {
+    href: 'https://www.instagram.com/neuroink.official',
+    label: 'Instagram',
+    icon: Instagram,
+  },
+  {
+    href: 'https://linktr.ee/neuroink',
+    label: 'Linktree',
+    icon: ExternalLink,
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F0D15] text-white font-raleway">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo et description */}
-          <div className="md:col-span-2">
-            <Link href="/" className="inline-block mb-4">
-              <Image
-                src="/images/logo-neuroink.png"
-                alt="NeuroInk"
-                width={120}
-                height={120}
-                className="h-20 w-auto"
-              />
-            </Link>
-            <p className="text-gray-400 text-sm max-w-md">
-              Démocratiser l'intelligence artificielle auprès du public francophone
-              à travers des livres clairs, progressifs et accessibles.
+    <footer className="bg-[#0F0D15] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Colonne 1 : Logo + Description */}
+          <div className="lg:col-span-1">
+            <div className="mb-4">
+              <LogoNeuroInk size="lg" variant="white" showImage={false} />
+            </div>
+            <p className="text-gray-400 text-sm font-raleway leading-relaxed">
+              NeuroInk democratise l&apos;intelligence artificielle a travers
+              des livres et des formations clairs, progressifs et accessibles a
+              tous.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Colonne 2 : Navigation */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+            <h3 className="font-raleway font-bold text-sm uppercase tracking-wider mb-4" style={{ color: '#40E0D0' }}>
+              Navigation
+            </h3>
             <ul className="space-y-2">
-              {navigation.main.map((item) => (
-                <li key={item.name}>
+              {footerNavLinks.map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#00A3E0] transition-colors duration-200 text-sm font-raleway"
                   >
-                    {item.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Légal */}
+          {/* Colonne 3 : Legal */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Légal</h3>
+            <h3 className="font-raleway font-bold text-sm uppercase tracking-wider mb-4" style={{ color: '#40E0D0' }}>
+              Informations legales
+            </h3>
             <ul className="space-y-2">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
+              {legalLinks.map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#00A3E0] transition-colors duration-200 text-sm font-raleway"
                   >
-                    {item.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Colonne 4 : Reseaux sociaux */}
+          <div>
+            <h3 className="font-raleway font-bold text-sm uppercase tracking-wider mb-4" style={{ color: '#40E0D0' }}>
+              Suivez-nous
+            </h3>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/10 hover:bg-[#00A3E0]/20 transition-all duration-300 group"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5 text-gray-400 group-hover:text-[#00A3E0] transition-colors" />
+                </a>
+              ))}
+            </div>
+            <div className="mt-6">
+              <p className="text-gray-500 text-xs font-raleway">
+                Contact : neuroink.official@gmail.com
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Réseaux sociaux et copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} NeuroInk - Tous droits réservés
-          </p>
-          <div className="flex items-center gap-4">
-            {navigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label={item.name}
-              >
-                <item.icon className="w-5 h-5" />
-              </a>
-            ))}
+        {/* Separateur */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-500 text-xs font-raleway">
+              &copy; 2026 NeuroInk - Tous droits reserves
+            </p>
+            <p className="text-gray-600 text-xs font-raleway">
+              Fait avec passion pour la democratisation de l&apos;IA
+            </p>
           </div>
         </div>
       </div>

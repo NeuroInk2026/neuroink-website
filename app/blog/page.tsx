@@ -1,254 +1,243 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { FileText, ArrowRight, Filter } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight, Clock, User, BookOpen } from 'lucide-react';
+import {
+  blogArticles,
+  categoryLabels,
+  categoryColors,
+  levelLabels,
+  levelColors,
+  filterArticles,
+  type ArticleCategory,
+  type ArticleLevel,
+} from '@/lib/blog-data';
 
-const articles = [
-  {
-    id: 'chatgpt-avenir-travail',
-    title: 'ChatGPT et l\'avenir du travail : opportunité ou menace ?',
-    excerpt: 'L\'intelligence artificielle transforme profondément le monde du travail. Découvrez comment ChatGPT et les IA génératives redéfinissent les métiers et créent de nouvelles opportunités.',
-    category: 'actualites',
-    source: 'MIT Technology Review',
-  },
-  {
-    id: 'google-gemini-ultra',
-    title: 'Google lance Gemini Ultra : une nouvelle ère pour l\'IA ?',
-    excerpt: 'Google dévoile Gemini Ultra, son modèle d\'IA le plus puissant à ce jour. Quelles sont ses capacités et comment se compare-t-il à GPT-4 ?',
-    category: 'actualites',
-    source: 'Nature',
-  },
-  {
-    id: 'europe-ai-act',
-    title: 'L\'Europe adopte l\'AI Act : ce qui change pour vous',
-    excerpt: 'La nouvelle réglementation européenne sur l\'IA est adoptée. Découvrez les implications pour les entreprises et les citoyens.',
-    category: 'actualites',
-    source: 'Science Magazine',
-  },
-  {
-    id: 'chatbot-python-30min',
-    title: 'Créer votre premier chatbot avec Python en 30 minutes',
-    excerpt: 'Un guide pratique pour construire votre premier chatbot IA en utilisant Python et OpenAI. Idéal pour les débutants !',
-    category: 'tutoriels',
-    source: 'Stanford AI Lab',
-  },
-  {
-    id: 'debuter-ia-5-etapes',
-    title: 'Débuter avec l\'IA en 5 étapes simples',
-    excerpt: 'Vous voulez vous lancer dans l\'IA mais ne savez pas par où commencer ? Voici un plan d\'action clair et progressif.',
-    category: 'tutoriels',
-    source: 'MIT OpenCourseWare',
-  },
-  {
-    id: 'analyse-sentiments-nltk',
-    title: 'Analyse de sentiments avec NLTK : guide complet',
-    excerpt: 'Apprenez à analyser les émotions dans les textes grâce au traitement du langage naturel et à la bibliothèque NLTK.',
-    category: 'tutoriels',
-    source: 'Carnegie Mellon University',
-  },
-  {
-    id: 'ia-vraiment-intelligente',
-    title: 'L\'IA est-elle vraiment "intelligente" ?',
-    excerpt: 'Une réflexion philosophique sur la nature de l\'intelligence artificielle. Peut-on vraiment parler d\'intelligence ?',
-    category: 'reflexions',
-    source: 'Oxford Internet Institute',
-  },
-  {
-    id: 'peur-ia-mythes-realites',
-    title: 'Faut-il avoir peur de l\'IA ? Entre mythes et réalités',
-    excerpt: 'Démêlons le vrai du faux concernant les risques de l\'IA. Entre fantasmes hollywoodiens et enjeux réels.',
-    category: 'reflexions',
-    source: 'Harvard Business Review',
-  }
-];
+const allCategories: Array<ArticleCategory | 'all'> = ['all', 'actualites', 'tutoriels', 'reflexions'];
+const allLevels: Array<ArticleLevel | 'all'> = ['all', 'debutant', 'intermediaire', 'avance'];
 
 export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState<ArticleCategory | 'all'>('all');
+  const [selectedLevel, setSelectedLevel] = useState<ArticleLevel | 'all'>('all');
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'actualites': return '#00A3E0';
-      case 'tutoriels': return '#6B3FA0';
-      case 'reflexions': return '#40E0D0';
-      default: return '#6B3FA0';
-    }
-  };
-
-  const getCategoryLabel = (category: string) => {
-    switch (category) {
-      case 'actualites': return 'Actualités';
-      case 'tutoriels': return 'Tutoriels';
-      case 'reflexions': return 'Réflexions';
-      default: return category;
-    }
-  };
-
-  const filteredArticles = selectedCategory === 'all' 
-    ? articles 
-    : articles.filter(a => a.category === selectedCategory);
+  const filteredArticles = filterArticles(selectedCategory, selectedLevel);
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Header - IDENTIQUE À LA PAGE LIVRES */}
-      <section className="relative py-20 sm:py-28 overflow-hidden" style={{ backgroundColor: '#0F0D15' }}>
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl opacity-20" style={{ backgroundColor: '#6B3FA0' }} />
-          <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20" style={{ backgroundColor: '#00A3E0' }} />
-        </div>
-
+      {/* Header */}
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0F0D15]" />
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: 'radial-gradient(ellipse at 30% 50%, #6B3FA0 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #00A3E0 0%, transparent 60%)',
+          }}
+        />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 font-raleway" style={{ backgroundColor: 'rgba(107, 63, 160, 0.15)', color: '#40E0D0' }}>
-              <FileText className="w-4 h-4" />
-              Actualités & Ressources
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 font-raleway">
-              Blog & Actualités
-            </h1>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-raleway">
-              Articles, tutoriels et réflexions sur l&apos;intelligence artificielle
-            </p>
-          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-5xl font-extrabold text-white font-raleway mb-4"
+          >
+            Actualites &amp; Ressources
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-300 font-raleway max-w-2xl mx-auto"
+          >
+            Articles, tutoriels et reflexions sur l&apos;intelligence artificielle
+          </motion.p>
         </div>
       </section>
 
       {/* Filtres */}
-      <section className="py-8 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 flex-wrap">
-            <Filter className="w-5 h-5 text-gray-500" />
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
-                selectedCategory === 'all'
-                  ? 'text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-              style={selectedCategory === 'all' ? { backgroundColor: '#6B3FA0' } : {}}
-            >
-              Tous
-            </button>
-            <button
-              onClick={() => setSelectedCategory('actualites')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
-                selectedCategory === 'actualites'
-                  ? 'text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-              style={selectedCategory === 'actualites' ? { backgroundColor: '#00A3E0' } : {}}
-            >
-              Actualités
-            </button>
-            <button
-              onClick={() => setSelectedCategory('tutoriels')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
-                selectedCategory === 'tutoriels'
-                  ? 'text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-              style={selectedCategory === 'tutoriels' ? { backgroundColor: '#6B3FA0' } : {}}
-            >
-              Tutoriels
-            </button>
-            <button
-              onClick={() => setSelectedCategory('reflexions')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all font-raleway ${
-                selectedCategory === 'reflexions'
-                  ? 'text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-              style={selectedCategory === 'reflexions' ? { backgroundColor: '#40E0D0' } : {}}
-            >
-              Réflexions
-            </button>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Filtre par categorie */}
+        <div className="mb-4">
+          <p className="text-sm font-raleway font-semibold text-gray-500 uppercase tracking-wider mb-3">
+            Categorie
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {allCategories.map((cat) => {
+              const isActive = selectedCategory === cat;
+              const label = cat === 'all' ? 'Tous' : categoryLabels[cat];
+              const color = cat === 'all' ? '#6B7280' : categoryColors[cat];
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-raleway font-semibold transition-all duration-300 ${
+                    isActive
+                      ? 'text-white shadow-lg scale-105'
+                      : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                  style={isActive ? { backgroundColor: color } : undefined}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Filtre par niveau */}
+        <div>
+          <p className="text-sm font-raleway font-semibold text-gray-500 uppercase tracking-wider mb-3">
+            Niveau
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {allLevels.map((lvl) => {
+              const isActive = selectedLevel === lvl;
+              const label = lvl === 'all' ? 'Tous les niveaux' : levelLabels[lvl];
+              const colors = lvl === 'all' ? null : levelColors[lvl];
+              return (
+                <button
+                  key={lvl}
+                  onClick={() => setSelectedLevel(lvl)}
+                  className={`px-4 py-2 rounded-full text-sm font-raleway font-semibold transition-all duration-300 border-2 ${
+                    isActive
+                      ? 'shadow-lg scale-105'
+                      : 'border-transparent bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                  style={
+                    isActive && colors
+                      ? { backgroundColor: colors.bg, color: colors.text, borderColor: colors.text }
+                      : isActive
+                      ? { backgroundColor: '#374151', color: '#FFFFFF', borderColor: '#374151' }
+                      : undefined
+                  }
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Articles */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Grille d'articles */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        {filteredArticles.length === 0 ? (
+          <div className="text-center py-16">
+            <BookOpen className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+            <p className="text-gray-500 font-raleway text-lg">
+              Aucun article ne correspond a ces filtres.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategory('all');
+                setSelectedLevel('all');
+              }}
+              className="mt-4 text-[#00A3E0] font-raleway font-semibold hover:underline"
+            >
+              Reinitialiser les filtres
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredArticles.map((article, index) => (
-              <Link key={article.id} href={`/blog/${article.id}`}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
-                >
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span
-                        className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white font-raleway"
-                        style={{ backgroundColor: getCategoryColor(article.category) }}
-                      >
-                        {getCategoryLabel(article.category)}
-                      </span>
-                    </div>
+              <motion.article
+                key={article.slug}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+              >
+                {/* Bande de couleur en haut */}
+                <div
+                  className="h-2 w-full"
+                  style={{ backgroundColor: categoryColors[article.category] }}
+                />
 
-                    <h3 className="text-xl font-bold mb-3 font-raleway line-clamp-2" style={{ color: '#0F0D15' }}>
-                      {article.title}
-                    </h3>
-
-                    <p className="text-gray-600 mb-4 font-raleway text-sm line-clamp-3">
-                      {article.excerpt}
-                    </p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                      <span className="text-sm font-medium font-raleway" style={{ color: '#6B3FA0' }}>
-                        Lire l&apos;article
-                      </span>
-                      <ArrowRight className="w-5 h-5" style={{ color: '#00A3E0' }} />
-                    </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Badges */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {/* Badge categorie */}
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-raleway font-bold text-white"
+                      style={{ backgroundColor: categoryColors[article.category] }}
+                    >
+                      {categoryLabels[article.category]}
+                    </span>
+                    {/* Badge niveau */}
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-raleway font-bold"
+                      style={{
+                        backgroundColor: levelColors[article.level].bg,
+                        color: levelColors[article.level].text,
+                      }}
+                    >
+                      {levelLabels[article.level]}
+                    </span>
                   </div>
-                </motion.div>
-              </Link>
+
+                  {/* Titre */}
+                  <h2 className="text-lg font-bold font-raleway text-[#0F0D15] mb-2 group-hover:text-[#6B3FA0] transition-colors line-clamp-2">
+                    {article.title}
+                  </h2>
+
+                  {/* Extrait */}
+                  <p className="text-gray-600 font-raleway text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
+                    {article.excerpt}
+                  </p>
+
+                  {/* Meta */}
+                  <div className="flex items-center gap-4 text-xs text-gray-400 font-raleway mb-4">
+                    <span className="flex items-center gap-1">
+                      <User className="w-3.5 h-3.5" />
+                      {article.author}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5" />
+                      {article.readTime}
+                    </span>
+                  </div>
+
+                  {/* Bouton Lire */}
+                  <Link
+                    href={`/blog/${article.slug}`}
+                    className="inline-flex items-center gap-2 font-raleway font-semibold text-sm transition-all duration-300 group-hover:gap-3"
+                    style={{ color: categoryColors[article.category] }}
+                  >
+                    Lire l&apos;article
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.article>
             ))}
           </div>
+        )}
 
-          {/* Newsletter CTA */}
-          <div className="mt-16 rounded-2xl p-8 text-white" style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 50%, #40E0D0 100%)' }}>
-            <h3 className="text-2xl font-bold mb-3 font-raleway text-center">
-              Ne manquez aucun article !
-            </h3>
-            <p className="text-white/90 mb-6 font-raleway text-center max-w-2xl mx-auto">
-              Inscrivez-vous à notre newsletter pour être notifié de la publication de nos prochains articles.
-            </p>
-            <div className="text-center">
-              <Link
-                href="/#newsletter"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-white font-semibold rounded-lg hover:bg-gray-100 transition-colors font-raleway"
-                style={{ color: '#6B3FA0' }}
-              >
-                S&apos;inscrire à la newsletter
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
+        {/* Compteur */}
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-400 font-raleway">
+            {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} affiche{filteredArticles.length > 1 ? 's' : ''}
+          </p>
+        </div>
+      </section>
 
-          {/* CTA Livre */}
-          <div className="mt-8 bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
-            <h3 className="text-xl font-bold text-gray-900 mb-3 font-raleway text-center">
-              Approfondissez avec notre livre !
-            </h3>
-            <p className="text-gray-600 mb-6 font-raleway text-center max-w-2xl mx-auto">
-              &quot;L&apos;Odyssée de l&apos;IA en 30 jours&quot; vous guide pas à pas dans votre apprentissage de l&apos;intelligence artificielle.
-            </p>
-            <div className="text-center">
-              <Link
-                href="/livres"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-xl font-raleway"
-                style={{ background: 'linear-gradient(135deg, #6B3FA0 0%, #00A3E0 100%)' }}
-              >
-                Découvrir le livre
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
+      {/* CTA Newsletter */}
+      <section className="bg-[#0F0D15] py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white font-raleway mb-4">
+            Restez informe des nouveautes NeuroInk
+          </h2>
+          <p className="text-gray-400 font-raleway mb-6">
+            Recevez nos articles, conseils et offres exclusives directement dans votre boite mail.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full text-white font-raleway font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            style={{ background: 'linear-gradient(135deg, #6B3FA0, #00A3E0)' }}
+          >
+            Nous contacter
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
     </main>
