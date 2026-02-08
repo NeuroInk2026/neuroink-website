@@ -149,10 +149,12 @@ export async function POST(request: Request) {
     console.log('✅ Validation réussie - Envoi en cours...');
 
     // === OPTION 1 : Envoi par Formspree (recommandé - gratuit) ===
-    const FORMSPREE_ID = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID;
+    // ⚠️ MODIFICATION : Cherche d'abord FORMSPREE_FORM_ID (Vercel), puis FORMSPREE_ID (local)
+    const FORMSPREE_ID = process.env.FORMSPREE_FORM_ID || process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
     if (FORMSPREE_ID) {
       console.log('📧 Envoi via Formspree...');
+      console.log('📧 FORMSPREE_ID détecté:', FORMSPREE_ID);
       
       try {
         const formspreeRes = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
