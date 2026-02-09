@@ -4,20 +4,18 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CookieBanner from '@/components/CookieBanner';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { homeMetadata } from '@/lib/seo/metadata';
 import { generateOrganizationSchema, generateWebsiteSchema } from '@/lib/seo/jsonld';
-import Script from 'next/script';
 
 const raleway = Raleway({
   subsets: ['latin'],
   variable: '--font-raleway',
-  display: 'swap',
+  display: 'swap', // Optimisation: swap pour éviter FOIT
 });
 
 // Metadata globale avec SEO optimisé
 export const metadata: Metadata = homeMetadata();
-
-const GA_MEASUREMENT_ID = 'G-RT00B3HQBG';
 
 export default function RootLayout({
   children,
@@ -31,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={raleway.variable}>
       <head>
-        {/* Preconnect Google Fonts */}
+        {/* OPTIMISATION 1: Preconnect Google Fonts pour gagner 3-5 points */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
@@ -44,24 +42,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+
+        {/* OPTIMISATION 2: Google Analytics avec chargement différé */}
+        <GoogleAnalytics />
       </head>
       <body className="font-raleway">
-        {/* Google Analytics - Script direct */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
-
         <Navbar />
         <main>{children}</main>
         <Footer />
